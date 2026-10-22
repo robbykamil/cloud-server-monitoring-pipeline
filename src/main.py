@@ -1,7 +1,7 @@
 import time
 import logging
 
-from rules.threshold import CPU_Warning, CPU_Critical, RAM_Warning, DISK_Warning, DISK_Critical
+from rules.threshold import CPU_WARNING, CPU_CRITICAL, RAM_WARNING, DISK_WARNING, DISK_CRITICAL
 from collectors.cpu import get_cpu_usage
 from collectors.disk import get_disk_usage
 from collectors.memory import get_memory_usage
@@ -21,9 +21,9 @@ system_status = {
 }
 
 validation = {
-    "CPU": {"Critical": CPU_Critical, "Warning": CPU_Warning},
-    "RAM": {"Warning": RAM_Warning},
-    "DISK": {"Critical": DISK_Critical, "Warning": DISK_Warning}
+    "CPU": {"Critical": CPU_CRITICAL, "Warning": CPU_WARNING},
+    "RAM": {"Warning": RAM_WARNING},
+    "DISK": {"Critical": DISK_CRITICAL, "Warning": DISK_WARNING}
 }
 
 def main():
@@ -32,7 +32,7 @@ def main():
         while True:
             for category, func in system_status.items():
                 if category in validation:
-                    # FIX: Call the collector function to get the actual numeric value
+                    # Call the collector function to get the actual numeric value
                     current_value = func()
                     threshold = validation[category]
                     
@@ -49,7 +49,7 @@ def main():
                     else:
                         logging.info(f"OK: {category} usage is at {current_value}%")
 
-            # FIX: Time delay between checks (e.g., every 60 seconds)
+            # Time delay between checks (e.g., every 60 seconds)
             time.sleep(60)
 
     except KeyboardInterrupt:
