@@ -31,6 +31,6 @@ def send_telegram_alert(message):
     except requests.exceptions.RequestException as req_err:
         logging.error(f"A general Requests error occurred: {req_err}")
     except Exception as gen_err:
-        logging.error(f"A non-network bug occurred in the script: {general_err}")
+        logging.error(f"A non-network bug occurred in the script: {gen_err}")
 
     return False
