@@ -1,2 +1,4 @@
 #ignore env file
 .env
+brownies/ #venv
+__pycache__/
